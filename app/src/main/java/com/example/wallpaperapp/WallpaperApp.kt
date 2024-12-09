@@ -24,9 +24,10 @@ import com.example.wallpaperapp.registerscreen.viewmodel.RegisterScreenViewModel
 import com.example.wallpaperapp.screens.homescreen.HomeScreen
 import com.example.wallpaperapp.screens.homescreen.bottombar.BottomCategoriesLayout
 import com.example.wallpaperapp.screens.homescreen.bottombar.BottomAppBarLayout
-import com.example.wallpaperapp.screens.homescreen.bottombar.BottomAppMenuLayout
+import com.example.wallpaperapp.screens.homescreen.bottombar.settings.BottomSettingsLayout
 import com.example.wallpaperapp.screens.homescreen.bottombar.BottomProfileLayout
 import com.example.wallpaperapp.screens.homescreen.bottombar.TopAppBarLayout
+import com.example.wallpaperapp.screens.homescreen.bottombar.settings.AccountLayout
 import com.example.wallpaperapp.wallpaperApiSetting.WallpaperViewModel
 
 @Composable
@@ -58,7 +59,7 @@ fun WallpaperApp(){
         bottomBar = {
             if (currentRoute in listOf(
                     NavigationPaths.HomeScreen.route,
-                    NavigationPaths.BottomAppMenu.route,
+                    NavigationPaths.BottomSettings.route,
                     NavigationPaths.BottomProfile.route,
                     NavigationPaths.BottomCategories.route
                 )) {
@@ -84,9 +85,10 @@ fun WallpaperApp(){
             composable(route = NavigationPaths.HomeScreen.route){ HomeScreen(wallpaperViewModel) }
             composable(route = NavigationPaths.RegisterScreen.route){ RegisterScreen({navController.navigate(NavigationPaths.RegisterScreenStep2.route)}, registerScreenViewModel) }
             composable(route = NavigationPaths.RegisterScreenStep2.route){RegisterScreenStep2(registerScreenViewModel, {navController.navigate(NavigationPaths.HomeScreen.route)})}
-            composable(route = NavigationPaths.BottomAppMenu.route){BottomAppMenuLayout(loginScreenViewModel, {navController.navigate(NavigationPaths.LoginScreen.route){popUpTo(NavigationPaths.HomeScreen.route) { inclusive = true }} })}
+            composable(route = NavigationPaths.BottomSettings.route){ BottomSettingsLayout({navController.navigate(NavigationPaths.AccountSettings.route)}) }
             composable(route = NavigationPaths.BottomProfile.route){BottomProfileLayout()}
             composable(route = NavigationPaths.BottomCategories.route){BottomCategoriesLayout()}
+            composable(route = NavigationPaths.AccountSettings.route){AccountLayout(loginScreenViewModel,{navController.navigate(NavigationPaths.LoginScreen.route){popUpTo(NavigationPaths.HomeScreen.route) { inclusive = true }}}, {navController.navigate(NavigationPaths.BottomSettings.route)})}
         }
     }
 }

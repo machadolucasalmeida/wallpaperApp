@@ -9,11 +9,10 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.AddCircleOutline
 import androidx.compose.material.icons.filled.Category
 import androidx.compose.material.icons.filled.Home
-import androidx.compose.material.icons.filled.Menu
 import androidx.compose.material.icons.filled.Person
+import androidx.compose.material.icons.filled.Settings
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
@@ -45,7 +44,7 @@ fun BottomAppBarLayout(navController: NavController) {
             NavigationBarItems.Home -> NavigationPaths.HomeScreen.route
             NavigationBarItems.Person -> NavigationPaths.BottomProfile.route
             NavigationBarItems.Categories -> NavigationPaths.BottomCategories.route
-            NavigationBarItems.Menu -> NavigationPaths.BottomAppMenu.route
+            NavigationBarItems.Menu -> NavigationPaths.BottomSettings.route
         } == currentRoute
     }.takeIf { it != -1 } ?: 0
     Box(modifier = Modifier.padding(start = 16.dp, end = 16.dp, bottom = 24.dp)){
@@ -63,7 +62,7 @@ fun BottomAppBarLayout(navController: NavController) {
                     NavigationBarItems.Home -> NavigationPaths.HomeScreen.route
                     NavigationBarItems.Person -> NavigationPaths.BottomProfile.route
                     NavigationBarItems.Categories -> NavigationPaths.BottomCategories.route
-                    NavigationBarItems.Menu -> NavigationPaths.BottomAppMenu.route
+                    NavigationBarItems.Menu -> NavigationPaths.BottomSettings.route
                 }
                 Box(
                     modifier = Modifier
@@ -92,7 +91,7 @@ enum class NavigationBarItems(val icon: ImageVector){
     Home(Icons.Default.Home),
     Person(Icons.Default.Person),
     Categories(Icons.Default.Category),
-    Menu(Icons.Default.Menu)
+    Menu(Icons.Default.Settings)
 }
 
 fun Modifier.noRippleClickable(onClick: () -> Unit): Modifier = composed {
